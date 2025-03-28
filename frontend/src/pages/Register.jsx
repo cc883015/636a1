@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import axios from '../axiosConfig';
 
@@ -19,38 +20,70 @@ const Register = () => {
   };
 
   return (
-    <div>
-      <h2>注册</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Username: </label>
+    <div style={styles.container}>
+      <h2>register</h2>
+      <form onSubmit={handleSubmit} style={styles.form}>
+        <div style={styles.formGroup}>
+          <label>Username:</label>
           <input 
             value={username} 
             onChange={(e) => setUsername(e.target.value)} 
-            required 
+            required
           />
         </div>
-        <div>
-          <label>Email: </label>
+
+        <div style={styles.formGroup}>
+          <label>Email:</label>
           <input 
+            type="email"
             value={email} 
             onChange={(e) => setEmail(e.target.value)} 
-            required 
+            required
           />
         </div>
-        <div>
-          <label>Password: </label>
+
+        <div style={styles.formGroup}>
+          <label>Password:</label>
           <input 
             type="password"
             value={password} 
             onChange={(e) => setPassword(e.target.value)} 
-            required 
+            required
           />
         </div>
-        <button type="submit">注册</button>
+
+        <button type="submit" style={styles.button}>注册</button>
       </form>
     </div>
   );
+};
+
+const styles = {
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',  // 水平居中
+    justifyContent: 'center',
+    marginTop: '100px'     // 让表单往下稍微居中（可根据需求调整）
+  },
+  form: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '10px',
+    width: '300px'
+  },
+  formGroup: {
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  button: {
+    backgroundColor: '#28a745', // 按钮自定义颜色 (绿色示例)
+    color: '#fff',
+    border: 'none',
+    padding: '10px 15px',
+    cursor: 'pointer',
+    borderRadius: '4px'
+  }
 };
 
 export default Register;

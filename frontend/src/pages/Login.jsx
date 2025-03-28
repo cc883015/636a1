@@ -21,10 +21,10 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h2>log in</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
+    <div style={styles.container}>
+      <h2>Log In</h2>
+      <form onSubmit={handleSubmit} style={styles.form}>
+        <div style={styles.formGroup}>
           <label>Email: </label>
           <input 
             value={email} 
@@ -32,7 +32,7 @@ const Login = () => {
             required 
           />
         </div>
-        <div>
+        <div style={styles.formGroup}>
           <label>Password: </label>
           <input 
             type="password"
@@ -41,10 +41,38 @@ const Login = () => {
             required 
           />
         </div>
-        <button type="submit">log in</button> 
+        <button type="submit" style={styles.button}>Log In</button> 
       </form>
     </div>
   );
+};
+
+const styles = {
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',  // 水平居中
+    justifyContent: 'center',
+    marginTop: '100px'     // 让表单往下稍微居中（可根据需求调整）
+  },
+  form: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '10px',           // 每个表单控件之间留点间隔
+    width: '300px'         // 给表单固定宽度，便于居中
+  },
+  formGroup: {
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  button: {
+    backgroundColor: '#007bff', // 登录按钮背景色
+    color: '#fff',
+    border: 'none',
+    padding: '10px 15px',
+    cursor: 'pointer',
+    borderRadius: '4px'
+  }
 };
 
 export default Login;

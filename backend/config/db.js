@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-mongoose.set('strictQuery', false); // 设置为 false 以消除警告
+mongoose.set('strictQuery', false); 
 
 const connectDB = async () => {
   try {

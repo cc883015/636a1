@@ -1,3 +1,5 @@
+// src/components/Navbar.jsx
+
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
@@ -12,21 +14,56 @@ const Navbar = () => {
   };
 
   return (
-    <nav style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
-      <Link to="/">BookList</Link>
-      {token ? (
-        <>
-          <Link to="/profile">profile</Link>
-          <button onClick={handleLogout}>log out</button>
-        </>
-      ) : (
-        <>
-          <Link to="/login">log in</Link>
-          <Link to="/register">register</Link>
-        </>
-      )}
+    <nav style={styles.nav}>
+      {/* 左侧：网站名称或 Logo */}
+      <div style={styles.left}>
+        <Link to="/" style={styles.link}>BookList</Link>
+      </div>
+
+      {/* 右侧：根据是否登录，显示不同按钮 */}
+      <div style={styles.right}>
+        {token ? (
+          <>
+            <Link to="/profile" style={styles.link}>Profile</Link>
+            <button onClick={handleLogout} style={styles.button}>Log out</button>
+          </>
+        ) : (
+          <>
+            <Link to="/login" style={styles.link}>Log in</Link>
+            <Link to="/register" style={styles.link}>Register</Link>
+          </>
+        )}
+      </div>
     </nav>
   );
+};
+
+const styles = {
+  nav: {
+    display: 'flex',
+    justifyContent: 'space-between', // 左右分布
+    alignItems: 'center',
+    backgroundColor: '#f8f8f8',      // 导航栏背景色，可自行修改
+    padding: '10px',
+    marginBottom: '20px'
+  },
+  left: {
+    // 如果你想给左侧更多自定义样式可在这里添加
+  },
+  right: {
+    display: 'flex',
+    gap: '10px' // 控制右侧 Link/button 之间的间距
+  },
+  link: {
+    textDecoration: 'none',
+    color: '#333'
+  },
+  button: {
+    cursor: 'pointer',
+    border: 'none',
+    backgroundColor: 'transparent',
+    color: '#007bff'
+  }
 };
 
 export default Navbar;
