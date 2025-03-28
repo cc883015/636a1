@@ -1,4 +1,3 @@
-// backend/routes/reviewRoutes.js
 const express = require('express');
 const router = express.Router();
 const { authMiddleware } = require('../middleware/authMiddleware');
@@ -8,7 +7,7 @@ const {
   deleteReview
 } = require('../controllers/reviewController');
 
-// 所有 review 操作都要求登录
+// 登录用户可对书籍进行评论/评分 CRUD
 router.post('/', authMiddleware, createReview);
 router.put('/:reviewId', authMiddleware, updateReview);
 router.delete('/:reviewId', authMiddleware, deleteReview);

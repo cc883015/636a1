@@ -1,20 +1,33 @@
-// frontend/src/context/AuthContext.js
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
+import axios from 'axios';
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
-  const [role, setRole] = useState(null);
+  const [role, setRole] = useState('user');
 
-  const login = (newToken, newRole) => {
-    setToken(newToken);
-    setRole(newRole);
+  useEffect(() => {
+    const storedToken = localStorage.getItem('token');
+    const storedRole = localStorage.getItem('role');
+    if (storedToken) {
+      setToken(storedToken);
+      setRole(storedRole || 'user');
+    }
+  }, []);
+
+  const login = (tk, userRole) => {
+    setToken(tk);
+    setRole(userRole);
+    localStorage.setItem('token', tk);
+    localStorage.setItem('role', userRole);
   };
 
   const logout = () => {
     setToken(null);
-    setRole(null);
+    setRole('user');
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
   };
 
   return (
