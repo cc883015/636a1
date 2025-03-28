@@ -13,16 +13,16 @@ const Navbar = () => {
 
   return (
     <nav style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
-      <Link to="/">书籍列表</Link>
+      <Link to="/">BookList</Link>
       {token ? (
         <>
-          <Link to="/profile">个人中心</Link>
-          <button onClick={handleLogout}>退出登录</button>
+          <Link to="/profile">profile</Link>
+          <button onClick={handleLogout}>log out</button>
         </>
       ) : (
         <>
-          <Link to="/login">登录</Link>
-          <Link to="/register">注册</Link>
+          <Link to="/login">log in</Link>
+          <Link to="/register">register</Link>
         </>
       )}
     </nav>

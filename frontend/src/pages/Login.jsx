@@ -22,7 +22,7 @@ const Login = () => {
 
   return (
     <div>
-      <h2>登录</h2>
+      <h2>log in</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Email: </label>
@@ -41,7 +41,7 @@ const Login = () => {
             required 
           />
         </div>
-        <button type="submit">登录</button>
+        <button type="submit">log in</button> 
       </form>
     </div>
   );
