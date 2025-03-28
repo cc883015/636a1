@@ -1,21 +1,24 @@
+// backend/controllers/reviewController.js
+
 const Review = require('../models/Review');
 const Book = require('../models/Book');
 
 exports.createReview = async (req, res) => {
   try {
-    const userId = req.user.userId; // JWT 解码后
+    const userId = req.user.userId;
     const { bookId, rating, comment } = req.body;
 
     const newReview = new Review({ book: bookId, user: userId, rating, comment });
     await newReview.save();
 
-    // 加入到 Book
     const book = await Book.findById(bookId);
     if (!book) return res.status(404).json({ message: 'Book not found' });
+
+    // 将新评论ID推入book.reviews
     book.reviews.push(newReview._id);
     await book.save();
 
-    // 重新计算平均评分
+    // 更新平均评分
     await updateBookAverageRating(book._id);
 
     res.status(201).json(newReview);
@@ -61,7 +64,7 @@ exports.deleteReview = async (req, res) => {
 
     await Review.findByIdAndDelete(reviewId);
 
-    // 从 Book 移除该 review
+    // 从 Book 中移除该 review
     const book = await Book.findById(review.book);
     if (book) {
       book.reviews = book.reviews.filter((r) => r.toString() !== reviewId);
@@ -75,7 +78,7 @@ exports.deleteReview = async (req, res) => {
   }
 };
 
-// 计算并更新书籍平均分
+// 重新计算书籍平均评分
 async function updateBookAverageRating(bookId) {
   const book = await Book.findById(bookId).populate('reviews');
   if (!book || book.reviews.length === 0) {

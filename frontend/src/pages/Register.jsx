@@ -1,3 +1,5 @@
+// frontend/src/pages/Register.jsx
+
 import React, { useState } from 'react';
 import axios from 'axios';
 
@@ -10,7 +12,9 @@ const Register = () => {
     e.preventDefault();
     try {
       await axios.post('/api/auth/register', {
-        username, email, password
+        username,
+        email,
+        password
       });
       alert('注册成功，请登录！');
     } catch (err) {
@@ -19,38 +23,57 @@ const Register = () => {
   };
 
   return (
-    <div>
+    <div style={styles.container}>
       <h2>注册</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Username: </label>
-          <input 
-            value={username} 
-            onChange={(e) => setUsername(e.target.value)} 
-            required 
+      <form onSubmit={handleSubmit} style={styles.form}>
+        <div style={styles.formGroup}>
+          <label>Username</label>
+          <input
+            value={username}
+            style={styles.input}
+            onChange={(e) => setUsername(e.target.value)}
+            required
           />
         </div>
-        <div>
-          <label>Email: </label>
-          <input 
-            value={email} 
-            onChange={(e) => setEmail(e.target.value)} 
-            required 
+        <div style={styles.formGroup}>
+          <label>Email</label>
+          <input
+            type="email"
+            value={email}
+            style={styles.input}
+            onChange={(e) => setEmail(e.target.value)}
+            required
           />
         </div>
-        <div>
-          <label>Password: </label>
-          <input 
+        <div style={styles.formGroup}>
+          <label>Password</label>
+          <input
             type="password"
-            value={password} 
-            onChange={(e) => setPassword(e.target.value)} 
-            required 
+            value={password}
+            style={styles.input}
+            onChange={(e) => setPassword(e.target.value)}
+            required
           />
         </div>
-        <button type="submit">注册</button>
+        <button type="submit" style={styles.button}>注册</button>
       </form>
     </div>
   );
+};
+
+const styles = {
+  container: { maxWidth: '400px', margin: '0 auto', padding: '20px' },
+  form: { display: 'flex', flexDirection: 'column' },
+  formGroup: { marginBottom: '15px' },
+  input: { width: '100%', padding: '8px', marginTop: '5px' },
+  button: {
+    padding: '10px',
+    backgroundColor: '#28a745',
+    border: 'none',
+    color: '#fff',
+    cursor: 'pointer',
+    borderRadius: '4px'
+  }
 };
 
 export default Register;

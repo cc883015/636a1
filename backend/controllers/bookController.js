@@ -1,5 +1,6 @@
-const Book = require('../models/Book');
+// backend/controllers/bookController.js
 
+const Book = require('../models/Book');
 
 exports.getAllBooks = async (req, res) => {
   try {
@@ -21,7 +22,6 @@ exports.getBookById = async (req, res) => {
 };
 
 exports.createBook = async (req, res) => {
-  // 只有管理员可操作
   if (req.user.role !== 'admin') {
     return res.status(403).json({ message: 'Only admin can create books' });
   }
