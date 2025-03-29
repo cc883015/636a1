@@ -22,3 +22,14 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+**/node_modules
+**/bower_components
+node_modules
+bower_components
+npm-debug.log*
+.node_repl_history
+.node_history
+.lock-wscript
+.npm
+.gitconfig
+**/package-lock.json
