@@ -4,7 +4,7 @@
   "description": "Complete MERN Task Manager Application",
   "scripts": {
     "install-all": "npm install && npm install --prefix backend && npm install --prefix frontend",
-    "start": "concurrently \"npm run prod --prefix backend\" \"npm start --prefix frontend\"",
+    "start": "concurrently \"npm run start --prefix frontend\"  \"npm run nodemon --prefix backend\"",
     "dev": "concurrently \"npm run dev --prefix backend\" \"npm start --prefix frontend\""
   },
   "devDependencies": {
@@ -15,6 +15,7 @@
   "author": "Task Manager Team",
   "license": "ISC",
   "dependencies": {
+    "all": "^0.0.0",
     "express": "^4.21.2",
     "mongodb": "^6.15.0"
   }

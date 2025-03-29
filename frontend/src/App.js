@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import Tasks from './pages/Books'; // 可改成 Books
+import Tasks from './pages/Products'; 
 import Profile from './pages/Profile';
 import { AuthProvider } from './context/AuthContext';
 

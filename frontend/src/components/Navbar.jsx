@@ -1,4 +1,3 @@
-// src/components/Navbar.jsx
 
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -17,7 +16,7 @@ const Navbar = () => {
     <nav style={styles.nav}>
       {/* 左侧：网站名称或 Logo */}
       <div style={styles.left}>
-        <Link to="/" style={styles.link}>BookList</Link>
+        <Link to="/" style={styles.link}>ProductList</Link>
       </div>
 
       {/* 右侧：根据是否登录，显示不同按钮 */}

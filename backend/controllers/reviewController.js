@@ -1,29 +1,33 @@
 const Review = require('../models/Review');
-const Book = require('../models/Book');
+const Product = require('../models/Product');
 
+// 确保所有方法都有明确的exports
 exports.createReview = async (req, res) => {
   try {
-    const userId = req.user.userId; // JWT 解码后
-    const { bookId, rating, comment } = req.body;
+    const userId = req.user.userId;
+    const { productId, rating, comment } = req.body;
 
-    const newReview = new Review({ book: bookId, user: userId, rating, comment });
+    const newReview = new Review({
+      product: productId,
+      user: userId,
+      rating,
+      comment
+    });
     await newReview.save();
 
-    // 加入到 Book
-    const book = await Book.findById(bookId);
-    if (!book) return res.status(404).json({ message: 'Book not found' });
-    book.reviews.push(newReview._id);
-    await book.save();
+    const product = await Product.findById(productId);
+    if (!product) return res.status(404).json({ message: 'Product not found' });
+    product.reviews.push(newReview._id);
+    await product.save();
 
-    // 重新计算平均评分
-    await updateBookAverageRating(book._id);
-
+    await updateProductAverageRating(product._id);
     res.status(201).json(newReview);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };
 
+// 必须添加这个导出
 exports.updateReview = async (req, res) => {
   try {
     const userId = req.user.userId;
@@ -40,14 +44,14 @@ exports.updateReview = async (req, res) => {
     review.comment = comment;
     await review.save();
 
-    await updateBookAverageRating(review.book);
-
+    await updateProductAverageRating(review.product);
     res.json(review);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };
 
+// 必须添加这个导出
 exports.deleteReview = async (req, res) => {
   try {
     const userId = req.user.userId;
@@ -61,12 +65,11 @@ exports.deleteReview = async (req, res) => {
 
     await Review.findByIdAndDelete(reviewId);
 
-    // 从 Book 移除该 review
-    const book = await Book.findById(review.book);
-    if (book) {
-      book.reviews = book.reviews.filter((r) => r.toString() !== reviewId);
-      await book.save();
-      await updateBookAverageRating(book._id);
+    const product = await Product.findById(review.product);
+    if (product) {
+      product.reviews = product.reviews.filter(r => r.toString() !== reviewId);
+      await product.save();
+      await updateProductAverageRating(product._id);
     }
 
     res.json({ message: 'Review deleted successfully' });
@@ -75,17 +78,14 @@ exports.deleteReview = async (req, res) => {
   }
 };
 
-// 计算并更新书籍平均分
-async function updateBookAverageRating(bookId) {
-  const book = await Book.findById(bookId).populate('reviews');
-  if (!book || book.reviews.length === 0) {
-    book.avgRating = 0;
-    return await book.save();
+// 辅助函数也需要导出（如果其他文件需要调用）
+async function updateProductAverageRating(productId) {
+  const product = await Product.findById(productId).populate('reviews');
+  if (!product || product.reviews.length === 0) {
+    product.avgRating = 0;
+    return await product.save();
   }
-  let total = 0;
-  book.reviews.forEach((review) => {
-    total += review.rating;
-  });
-  book.avgRating = (total / book.reviews.length).toFixed(2);
-  await book.save();
+  const total = product.reviews.reduce((sum, review) => sum + review.rating, 0);
+  product.avgRating = (total / product.reviews.length).toFixed(2);
+  await product.save();
 }
