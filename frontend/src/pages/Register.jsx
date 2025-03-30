@@ -12,9 +12,9 @@ const Register = () => {
       await axios.post('/api/auth/register', {
         username, email, password
       });
-      alert('注册成功，请登录！');
+      alert('register succesfully，please log in！');
     } catch (err) {
-      alert('注册失败');
+      alert('register failed');
     }
   };
 
@@ -51,7 +51,7 @@ const Register = () => {
           />
         </div>
 
-        <button type="submit" style={styles.button}>注册</button>
+        <button type="submit" style={styles.button}>register</button>
       </form>
     </div>
   );
