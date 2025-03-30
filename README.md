@@ -21,7 +21,7 @@ Review & Rating System – CRUD for products, reviews, and ratings.
 
 ### Frontend
 -  React.js - UI library
-- TailwindCSS - Styling
+- TailwindCSS 
 - React Router - Navigation
 
 ## Project Management
@@ -29,7 +29,8 @@ https://ictrun.atlassian.net/jira/software/projects/PRS/boards/7/timeline?timeli
 
 ## System Design
 ### Requirement Diagram
-![Requirement Diagram]
+![Uploading image.png…]()
+
 
 ## Getting Started
 
