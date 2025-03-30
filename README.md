@@ -29,7 +29,7 @@ https://ictrun.atlassian.net/jira/software/projects/PRS/boards/7/timeline?timeli
 
 ## System Design
 ### Requirement Diagram
-![Requirement Diagram](./requirements_diagram.png)
+![Requirement Diagram](./requirement_diagram.png)
 
 
 ## Getting Started
