@@ -16,6 +16,6 @@ router.get('/:id', getProductById);
 // 管理员可写
 router.post('/', authMiddleware, createProduct);
 router.put('/:id', authMiddleware, updateProduct);
-router.delete('/:id', authMiddleware, deleteProduct);d
+router.delete('/:id', authMiddleware, deleteProduct);
 
 module.exports = router;
