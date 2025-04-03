@@ -36,7 +36,7 @@ jobs:
       run: | 
         echo "Secret 1 is: $MONGO_URL"
         echo "Secret 2 is: $JWT_SECRET"
-        echo "Secret 3 is: $PORT
+        echo "Secret 3 is: $PORT"
       
     - run: pm2 stop all
 
