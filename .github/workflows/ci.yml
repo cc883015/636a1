@@ -39,7 +39,7 @@ jobs:
         echo "Secret 2 is: $JWT_SECRET"
         echo "Secret 3 is: $PORT"
       
-    # - run: pm2 stop all
+    - run: pm2 stop all
 
     # Install dependencies for backend
     - name: Install Backend Dependencies
@@ -75,6 +75,6 @@ jobs:
         touch .env
         echo "${{ secrets.PROD }}" > .env
 
-    - run: pm2 start all
+    - run: pm2 start server.js --name "pcc-backend"
 
-    - run: pm2 restart all
+    # - run: pm2 restart all
