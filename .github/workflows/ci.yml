@@ -34,7 +34,7 @@ jobs:
         JWT_SECRET: ${{ secrets.JWT_SECRET }}
         PORT: ${{ secrets.PORT }}
       run: | 
-        echo "Secret 1 is: $MONGO_URI"
+        echo "Secret 1 is: $MONGO_URL"
         echo "Secret 2 is: $JWT_SECRET"
         echo "Secret 3 is: $PORT
       
