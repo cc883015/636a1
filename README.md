@@ -15,14 +15,14 @@ Review & Rating System – CRUD for products, reviews, and ratings.
 ## Tech Stack
 
 ### Backend
--  Node.js - JavaScript runtime
--  Express - Web framework
+-  Node.js - JavaScript 
+-  Express - framework
 -  MongoDB - Database
 
 ### Frontend
--  React.js - UI library
+-  React.js 
 - TailwindCSS 
-- React Router - Navigation
+- React Router 
 
 ## Project Management
 https://ictrun.atlassian.net/jira/software/projects/PRS/boards/7/timeline?timeline=WEEKS&shared=&atlOrigin=eyJpIjoiNTUwNmQwZDg3MDk3NGUwMGE3Y2E2NTZjNjE2MzZlNmEiLCJwIjoiaiJ9
@@ -38,12 +38,12 @@ https://ictrun.atlassian.net/jira/software/projects/PRS/boards/7/timeline?timeli
 ```bash
 npm run start
 ```
-- Only Backend:
+- Backend:
 ```bash
 cd backend
 npm run start
 ```
-- Only Frontend:
+-  Frontend:
 ```bash
 cd frontend
 npm run start
