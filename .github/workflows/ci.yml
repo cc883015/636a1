@@ -75,6 +75,6 @@ jobs:
         touch .env
         echo "${{ secrets.PROD }}" > .env
 
-    - run: pm2 start server.js --name "pcc-backend"
+    - run: cd ./backend & pm2 start server.js --name "pcc-backend"
 
     # - run: pm2 restart all
