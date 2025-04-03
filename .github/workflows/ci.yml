@@ -61,7 +61,7 @@ jobs:
     # Run backend tests
     - name: Run Backend Tests
       env:
-        MONGO_URI: ${{ secrets.MONGO_URL }}
+        MONGO_URL: ${{ secrets.MONGO_URL }}
         JWT_SECRET: ${{ secrets.JWT_SECRET }}
         PORT: ${{ secrets.PORT }}
       working-directory: ./backend
