@@ -10,7 +10,7 @@ jobs:
   test:
     name: Run Tests
     runs-on: self-hosted
-    environment: MONGO_URL
+    environment: MONGO_URI
 
     strategy:
       matrix:
