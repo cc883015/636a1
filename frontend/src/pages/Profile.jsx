@@ -5,14 +5,14 @@ const Profile = () => {
   const { token, role, logout } = useContext(AuthContext);
 
   if (!token) {
-    return <p>你尚未登录</p>;
+    return <p>you should login</p>;
   }
 
   return (
     <div>
-      <h2>个人中心</h2>
-      <p>角色: {role}</p>
-      <button onClick={logout}>退出登录</button>
+      <h2>profile</h2>
+      <p>role: {role}</p>
+      <button onClick={logout}>logout</button>
     </div>
   );
 };
