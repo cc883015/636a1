@@ -14,12 +14,12 @@ const Navbar = () => {
 
   return (
     <nav style={styles.nav}>
-      {/* 左侧：网站名称或 Logo */}
+      {/*  Logo */}
       <div style={styles.left}>
         <Link to="/" style={styles.link}>ProductList</Link>
       </div>
 
-      {/* 右侧：根据是否登录，显示不同按钮 */}
+      {/* button*/}
       <div style={styles.right}>
         {token ? (
           <>
